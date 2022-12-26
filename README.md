@@ -48,7 +48,7 @@ let cashfree = new cashfreeProd.Cashfree(paymentSessionId);
 
 2. Using SDK URL
 ```
-const cashfree = new cashfree(paymentSessionId);
+const cashfree = new Cashfree(paymentSessionId);
 ```
 
 ## Implementation
