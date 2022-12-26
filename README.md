@@ -43,6 +43,7 @@ Production:
 import { cashfreeProd } from "cashfree-sdkjs";
 let cashfree = new cashfreeProd.Cashfree(paymentSessionId);
 ```
+Make sure only one of the above is present in your application
 
 2. Using SDK URL
 ```
