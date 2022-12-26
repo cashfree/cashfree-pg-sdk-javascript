@@ -1,20 +1,17 @@
 # CASHFREE PAYMENT GATEWAY
 
 ## Documentation
-There are two ways to integrate Cashfree Payment Gateway
-```
-1. Drop is our pre-built UI solution for accepting payments. Drop works by displaying payment components we call as drops at any place you want in your page. It can either display all the payment components at one place or different places depending on your need.
+Drop is our pre-built UI solution for accepting payments. Drop works by displaying payment components we call as drops at any place you want in your page. It can either display all the payment components at one place or different places depending on your need.
 
-2. Redirect is the other solution for accepting payments where we can use Cashfree’s user interface to capture payment details. You will do this by redirecting the customer to a cashfree hosted page, which can be customized for your needs.
-```
+Redirect is the other solution for accepting payments where we can use Cashfree’s user interface to capture payment details. You will do this by redirecting the customer to a cashfree hosted page, which can be customized for your needs.
 
 ## Environments
-SDK is available in 2 different environments:
-```
+SDK is available in 2 different environments
+
 1. Sandbox is used during your testing. No actual debit occurs. Everything is simulated. Using this environment you should be able to integrate the SDK and test payments.
 
 2. Production is used once you have finalized your testing on the sandbox, you can use the production environment.
-```
+
 
 ## Installation
 1. Using NPM package
@@ -27,12 +24,12 @@ Note: add --save if you are using npm < 5.0.0
 ```
 Sandbox: 
 <script src="https://sdk.cashfree.com/js/ui/2.0.0/cashfree.sandbox.js"></script>
-
+```
+```
 Production: 
 <script src="https://sdk.cashfree.com/js/ui/2.0.0/cashfree.prod.js"></script>
-
-Make sure only one of the above is present in your application
 ```
+Make sure only one of the above is present in your application
 
 ## Integration
 1. Using NPM package
@@ -40,7 +37,8 @@ Make sure only one of the above is present in your application
 Sandbox: 
 import { cashfreeSandbox } from "cashfree-sdkjs";
 let cashfree = new cashfreeSandbox.Cashfree(paymentSessionId);
-
+```
+```
 Production: 
 import { cashfreeProd } from "cashfree-sdkjs";
 let cashfree = new cashfreeProd.Cashfree(paymentSessionId);
