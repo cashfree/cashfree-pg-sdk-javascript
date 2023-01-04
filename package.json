@@ -9,12 +9,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cashfree/cashfree-dropjs.git"
+    "url": "git+https://github.com/cashfree/cashfree-pg-sdk-javascript.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/cashfree/cashfree-dropjs/issues"
+    "url": "https://github.com/cashfree/cashfree-pg-sdk-javascript/issues"
   },
-  "homepage": "https://github.com/cashfree/cashfree-dropjs#readme"
+  "homepage": "https://github.com/cashfree/cashfree-pg-sdk-javascript#readme"
 }
