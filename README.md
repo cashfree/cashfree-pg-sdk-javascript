@@ -40,7 +40,7 @@ Example - https://www.cashfree.com => Domain name would be "cashfree.com"
 ## Installation
 1. Using NPM package
 ```
-npm i cashfree-sdkjs
+npm i cashfree-pg-sdk-javascript
 ```
 Note: add --save if you are using npm < 5.0.0
 
