@@ -8652,7 +8652,7 @@
                     })()
                   ] || "o",
                 a = ht().parse(window.navigator.userAgent),
-                o = a.version.slice(0, 5),
+                o = a.version.slice(0, 5) || "xxxxx",
                 c = "o",
                 l = "x";
               return (
@@ -8663,7 +8663,7 @@
                       : { a: "a", i: "i", w: "w", m: "m", l: "l" }[
                           a.os.family.charAt(0).toLowerCase()
                         ] || "o"),
-                  (l = a.os.version.slice(0, 5))),
+                  (l = a.os.version.slice(0, 5) || "xxxxx")),
                 {
                   deviceType: t,
                   browserType: r,
