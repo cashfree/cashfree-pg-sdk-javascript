@@ -1,6 +1,6 @@
 {
   "name": "cashfree-pg-sdk-javascript",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "\"Use our JS SDK to integrate the Cashfree Payment Gateway into your application.\"",
   "main": "src/index.js",
   "scripts": {
