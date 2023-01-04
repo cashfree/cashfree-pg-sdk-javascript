@@ -45,6 +45,7 @@ npm i cashfree-pg-sdk-javascript
 Note: add --save if you are using npm < 5.0.0
 
 2. Using SDK URL
+
 &rarr; Sandbox
 ```
 <script src="https://sdk.cashfree.com/js/ui/2.0.0/cashfree.sandbox.js"></script>
@@ -57,6 +58,7 @@ Make sure only one of the above is present in your application
 
 ## Integration
 1. Using NPM package
+
 &rarr; Sandbox
 ```
 import { cashfreeSandbox } from "cashfree-sdkjs";
