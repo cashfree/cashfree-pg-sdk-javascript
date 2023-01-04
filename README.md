@@ -61,12 +61,12 @@ Make sure only one of the above is present in your application
 
 &rarr; Sandbox
 ```
-import { cashfreeSandbox } from "cashfree-sdkjs";
+import { cashfreeSandbox } from "cashfree-pg-sdk-javascript";
 let cashfree = new cashfreeSandbox.Cashfree(paymentSessionId);
 ```
 &rarr; Production
 ```
-import { cashfreeProd } from "cashfree-sdkjs";
+import { cashfreeProd } from "cashfree-pg-sdk-javascript";
 let cashfree = new cashfreeProd.Cashfree(paymentSessionId);
 ```
 Make sure only one of the above is present in your application
