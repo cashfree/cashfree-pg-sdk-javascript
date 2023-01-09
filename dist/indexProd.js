@@ -10676,6 +10676,7 @@
                                       card: {
                                         channel: a ? Yt : "post",
                                         card_number: o._state.cardNumber,
+                                        card_holder_name: o._state.cardHolder,
                                         card_expiry_mm:
                                           o._state.cardExpiryMonth,
                                         card_expiry_yy: o._state.cardExpiryYear,
