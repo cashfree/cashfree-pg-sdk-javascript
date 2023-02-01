@@ -8657,10 +8657,10 @@
                           return "Other";
                       }
                     })()
-                  ] || "o",
+                  ] || "x",
                 a = ht().parse(window.navigator.userAgent),
                 o = _t(a.version, 5),
-                c = "o",
+                c = "x",
                 l = "x";
               return (
                 a.os.family &&
@@ -8669,7 +8669,7 @@
                       ? "m"
                       : { a: "a", i: "i", w: "w", m: "m", l: "l" }[
                           a.os.family.charAt(0).toLowerCase()
-                        ] || "o"),
+                        ] || "x"),
                   (l = _t(a.os.version, 5))),
                 {
                   deviceType: t,
