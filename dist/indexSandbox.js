@@ -6182,12 +6182,12 @@
             var t = this;
             return (
               (function watchScreenFrame() {
-                if (void 0 === Lt) {
+                if (void 0 === Ut) {
                   var checkScreenFrame = function () {
                     var t = getCurrentScreenFrame();
                     isFrameSizeNull(t)
-                      ? (Lt = setTimeout(checkScreenFrame, 2500))
-                      : ((Ft = t), (Lt = void 0));
+                      ? (Ut = setTimeout(checkScreenFrame, 2500))
+                      : ((Lt = t), (Ut = void 0));
                   };
                   checkScreenFrame();
                 }
@@ -6199,8 +6199,8 @@
                     switch (r.label) {
                       case 0:
                         return isFrameSizeNull((t = getCurrentScreenFrame()))
-                          ? Ft
-                            ? [2, __spreadArrays(Ft)]
+                          ? Lt
+                            ? [2, __spreadArrays(Lt)]
                             : (function getFullscreenElement() {
                                 var t = document;
                                 return (
@@ -6226,7 +6226,7 @@
                       case 1:
                         r.sent(), (t = getCurrentScreenFrame()), (r.label = 2);
                       case 2:
-                        return isFrameSizeNull(t) || (Ft = t), [2, t];
+                        return isFrameSizeNull(t) || (Lt = t), [2, t];
                     }
                     var a;
                   });
@@ -6403,7 +6403,7 @@
                               },
                               confidence: getConfidence(t),
                               components: t,
-                              version: Ht,
+                              version: qt,
                             };
                           })(o)),
                           r || null == a || a.debug,
@@ -6847,7 +6847,7 @@
             }
             return t;
           }
-          a.r(r), a.d(r, { Cashfree: () => ir });
+          a.r(r), a.d(r, { Cashfree: () => or });
           var o = a(7757),
             c = a.n(o),
             l =
@@ -8616,14 +8616,39 @@
                 r
               );
             },
-            _t = function xpadder(t, r) {
+            _t = function detectBrowser() {
+              var t = function test(t) {
+                return t.test(window.navigator.userAgent);
+              };
+              switch (!0) {
+                case t(/edg/i):
+                  return "MicrosoftEdge";
+                case t(/trident/i):
+                  return "MicrosoftInternetExplorer";
+                case t(/firefox|fxios/i):
+                  return "MozillaFirefox";
+                case t(/opr\//i):
+                  return "Opera";
+                case t(/ucbrowser/i):
+                  return "UCBrowser";
+                case t(/samsungbrowser/i):
+                  return "SamsungBrowser";
+                case t(/chrome|crios/i):
+                  return "GoogleChrome";
+                case t(/safari/i):
+                  return "AppleSafari";
+                default:
+                  return "Other";
+              }
+            },
+            gt = function xpadder(t, r) {
               return t
                 ? t.length < r
                   ? t + "x".repeat(r - t.length)
                   : t.substr(0, r)
                 : "x".repeat(r);
             },
-            gt = function getDeviceDetails() {
+            vt = function getDeviceDetails() {
               var t = mt() ? "m" : "d",
                 r =
                   {
@@ -8631,35 +8656,9 @@
                     GoogleChrome: "c",
                     MozillaFirefox: "m",
                     Opera: "o",
-                  }[
-                    (function detectBrowser() {
-                      var t = function test(t) {
-                        return t.test(window.navigator.userAgent);
-                      };
-                      switch (!0) {
-                        case t(/edg/i):
-                          return "MicrosoftEdge";
-                        case t(/trident/i):
-                          return "MicrosoftInternetExplorer";
-                        case t(/firefox|fxios/i):
-                          return "MozillaFirefox";
-                        case t(/opr\//i):
-                          return "Opera";
-                        case t(/ucbrowser/i):
-                          return "UCBrowser";
-                        case t(/samsungbrowser/i):
-                          return "SamsungBrowser";
-                        case t(/chrome|crios/i):
-                          return "GoogleChrome";
-                        case t(/safari/i):
-                          return "AppleSafari";
-                        default:
-                          return "Other";
-                      }
-                    })()
-                  ] || "x",
+                  }[_t()] || "x",
                 a = ht().parse(window.navigator.userAgent),
-                o = _t(a.version, 5),
+                o = gt(a.version, 5),
                 c = "x",
                 l = "x";
               return (
@@ -8670,7 +8669,7 @@
                       : { a: "a", i: "i", w: "w", m: "m", l: "l" }[
                           a.os.family.charAt(0).toLowerCase()
                         ] || "x"),
-                  (l = _t(a.os.version, 5))),
+                  (l = gt(a.os.version, 5))),
                 {
                   deviceType: t,
                   browserType: r,
@@ -8680,7 +8679,7 @@
                 }
               );
             },
-            vt = function showLoader(t, r) {
+            yt = function showLoader(t, r) {
               var a = "\n        "
                   .concat(
                     "\n        <style>\n          .boxes {\n            --size: 32px;\n            --duration: 800ms;\n            height: calc(var(--size) * 2);\n            width: calc(var(--size) * 3);\n            position: relative;\n            transform-style: preserve-3d;\n            transform-origin: 50% 50%;\n            margin-top: calc(var(--size) * 1.5 * -1);\n            transform: rotateX(60deg) rotateZ(45deg) rotateY(0deg) translateZ(0px);\n          }\n          .boxes .box {\n            width: var(--size);\n            height: var(--size);\n            top: 0;\n            left: 0;\n            position: absolute;\n            transform-style: preserve-3d;\n          }\n          .boxes .box:nth-child(1) {\n            transform: translate(100%, 0);\n            -webkit-animation: box1 var(--duration) linear infinite;\n                    animation: box1 var(--duration) linear infinite;\n          }\n          .boxes .box:nth-child(2) {\n            transform: translate(0, 100%);\n            -webkit-animation: box2 var(--duration) linear infinite;\n                    animation: box2 var(--duration) linear infinite;\n          }\n          .boxes .box:nth-child(3) {\n            transform: translate(100%, 100%);\n            -webkit-animation: box3 var(--duration) linear infinite;\n                    animation: box3 var(--duration) linear infinite;\n          }\n          .boxes .box:nth-child(4) {\n            transform: translate(200%, 0);\n            -webkit-animation: box4 var(--duration) linear infinite;\n                    animation: box4 var(--duration) linear infinite;\n          }\n          .boxes .box > div {\n            --background: #5C8DF6;\n            --top: auto;\n            --right: auto;\n            --bottom: auto;\n            --left: auto;\n            --translateZ: calc(var(--size) / 2);\n            --rotateY: 0deg;\n            --rotateX: 0deg;\n            position: absolute;\n            width: 100%;\n            height: 100%;\n            background: var(--background);\n            top: var(--top);\n            right: var(--right);\n            bottom: var(--bottom);\n            left: var(--left);\n            transform: rotateY(var(--rotateY)) rotateX(var(--rotateX)) translateZ(var(--translateZ));\n          }\n          .boxes .box > div:nth-child(1) {\n            --top: 0;\n            --left: 0;\n          }\n          .boxes .box > div:nth-child(2) {\n            --background: #145af2;\n            --right: 0;\n            --rotateY: 90deg;\n          }\n          .boxes .box > div:nth-child(3) {\n            --background: #447cf5;\n            --rotateX: -90deg;\n          }\n          .boxes .box > div:nth-child(4) {\n            --background: #DBE3F4;\n            --top: 0;\n            --left: 0;\n            --translateZ: calc(var(--size) * 3 * -1);\n          }\n          \n          @-webkit-keyframes box1 {\n            0%, 50% {\n              transform: translate(100%, 0);\n            }\n            100% {\n              transform: translate(200%, 0);\n            }\n          }\n          \n          @keyframes box1 {\n            0%, 50% {\n              transform: translate(100%, 0);\n            }\n            100% {\n              transform: translate(200%, 0);\n            }\n          }\n          @-webkit-keyframes box2 {\n            0% {\n              transform: translate(0, 100%);\n            }\n            50% {\n              transform: translate(0, 0);\n            }\n            100% {\n              transform: translate(100%, 0);\n            }\n          }\n          @keyframes box2 {\n            0% {\n              transform: translate(0, 100%);\n            }\n            50% {\n              transform: translate(0, 0);\n            }\n            100% {\n              transform: translate(100%, 0);\n            }\n          }\n          @-webkit-keyframes box3 {\n            0%, 50% {\n              transform: translate(100%, 100%);\n            }\n            100% {\n              transform: translate(0, 100%);\n            }\n          }\n          @keyframes box3 {\n            0%, 50% {\n              transform: translate(100%, 100%);\n            }\n            100% {\n              transform: translate(0, 100%);\n            }\n          }\n          @-webkit-keyframes box4 {\n            0% {\n              transform: translate(200%, 0);\n            }\n            50% {\n              transform: translate(200%, 100%);\n            }\n            100% {\n              transform: translate(100%, 100%);\n            }\n          }\n          @keyframes box4 {\n            0% {\n              transform: translate(200%, 0);\n            }\n            50% {\n              transform: translate(200%, 100%);\n            }\n            100% {\n              transform: translate(100%, 100%);\n            }\n          }\n          html {\n            -webkit-font-smoothing: antialiased;\n          }\n        </style>\n    ",
@@ -8717,34 +8716,34 @@
                       return r();
                     });
             },
-            yt = function hideLoader() {
+            bt = function hideLoader() {
               (0, pt.enablePageScroll)(document.getElementById("cf-loader")),
                 document.getElementById("cf-loader") &&
                   document.getElementById("cf-loader").remove();
             },
-            bt = a(3379),
-            Et = a.n(bt),
-            xt = a(7795),
-            wt = a.n(xt),
-            St = a(569),
-            At = a.n(St),
-            kt = a(3565),
-            Ct = a.n(kt),
-            Tt = a(9216),
-            Ot = a.n(Tt),
-            It = a(4589),
-            Pt = a.n(It),
-            Bt = a(7950),
-            Nt = {};
-          (Nt.styleTagTransform = Pt()),
-            (Nt.setAttributes = Ct()),
-            (Nt.insert = At().bind(null, "head")),
-            (Nt.domAPI = wt()),
-            (Nt.insertStyleElement = Ot());
-          Et()(Bt.Z, Nt);
-          Bt.Z && Bt.Z.locals && Bt.Z.locals;
-          var Rt = {},
-            Dt = (function () {
+            Et = a(3379),
+            xt = a.n(Et),
+            wt = a(7795),
+            St = a.n(wt),
+            At = a(569),
+            kt = a.n(At),
+            Ct = a(3565),
+            Tt = a.n(Ct),
+            Ot = a(9216),
+            It = a.n(Ot),
+            Pt = a(4589),
+            Bt = a.n(Pt),
+            Nt = a(7950),
+            Rt = {};
+          (Rt.styleTagTransform = Bt()),
+            (Rt.setAttributes = Tt()),
+            (Rt.insert = kt().bind(null, "head")),
+            (Rt.domAPI = St()),
+            (Rt.insertStyleElement = It());
+          xt()(Nt.Z, Rt);
+          Nt.Z && Nt.Z.locals && Nt.Z.locals;
+          var Dt = {},
+            Mt = (function () {
               var t = asyncToGenerator_asyncToGenerator(
                 c().mark(function _callee(t) {
                   var r,
@@ -8786,7 +8785,7 @@
                 return t.apply(this, arguments);
               };
             })(),
-            Mt = (function () {
+            jt = (function () {
               var t = asyncToGenerator_asyncToGenerator(
                 c().mark(function _callee2(t, r) {
                   var a, o, l, u, d, p;
@@ -8794,7 +8793,7 @@
                     for (;;)
                       switch ((c.prev = c.next)) {
                         case 0:
-                          if (!(a = Rt[t])) {
+                          if (!(a = Dt[t])) {
                             c.next = 3;
                             break;
                           }
@@ -8826,7 +8825,7 @@
                           return (c.next = 16), u.json();
                         case 16:
                           return (
-                            (p = c.sent), (Rt[t] = p), c.abrupt("return", p)
+                            (p = c.sent), (Dt[t] = p), c.abrupt("return", p)
                           );
                         case 19:
                         case "end":
@@ -8839,7 +8838,7 @@
                 return t.apply(this, arguments);
               };
             })(),
-            jt = function Headless() {
+            Gt = function Headless() {
               var t = this;
               _classCallCheck(this, Headless),
                 _defineProperty(this, "getBrandIcon", function (t) {
@@ -8946,7 +8945,7 @@
                                         (l = r.data.url),
                                         (u = { action: "RESEND_OTP" }),
                                         (c.next = 10),
-                                        Dt(l, {
+                                        Mt(l, {
                                           method: "POST",
                                           body: JSON.stringify(u),
                                           headers: {
@@ -9017,7 +9016,7 @@
                                       (p = r.data.url),
                                       (m = { otp: d, action: "SUBMIT_OTP" }),
                                       (c.next = 10),
-                                      Dt(p, {
+                                      Mt(p, {
                                         method: "POST",
                                         body: JSON.stringify(m),
                                         headers: {
@@ -9092,11 +9091,11 @@
                     );
                 });
             },
-            Gt = function Order() {
+            Ft = function Order() {
               _classCallCheck(this, Order), _defineProperty(this, "timer", "");
             };
           _defineProperty(
-            Gt,
+            Ft,
             "pay",
             (function () {
               var t = asyncToGenerator_asyncToGenerator(
@@ -9109,7 +9108,7 @@
                           return (
                             (u = Le()),
                             (d = "".concat(t).concat(u)),
-                            (p = gt()),
+                            (p = vt()),
                             (h = p.deviceType),
                             (m = p.browserType),
                             (_ = p.browserVersion),
@@ -9193,7 +9192,7 @@
             })()
           ),
             _defineProperty(
-              Gt,
+              Ft,
               "intentPay",
               (function () {
                 var t = asyncToGenerator_asyncToGenerator(
@@ -9206,7 +9205,7 @@
                             return (
                               (u = Le()),
                               (d = "".concat(t).concat(u)),
-                              (p = gt()),
+                              (p = vt()),
                               (h = p.deviceType),
                               (m = p.browserType),
                               (_ = p.browserVersion),
@@ -9268,24 +9267,24 @@
               })()
             ),
             _defineProperty(
-              Gt,
+              Ft,
               "handlePaymentResponse",
               function (t, r, a, o, c) {
                 var l = window.paymentWindow;
                 return "link" === t.action
                   ? (l && (l.location = t.data.url),
-                    vt(l, o),
-                    Gt.endAndStartTimer(o),
+                    yt(l, o),
+                    Ft.endAndStartTimer(o),
                     l && l.focus(),
                     l)
                   : (l && l.close(),
                     "post" === t.action
-                      ? (new jt().renderHeadless(t, o, c), null)
+                      ? (new Gt().renderHeadless(t, o, c), null)
                       : ("custom" !== t.action ||
                           document.getElementById(
                             "cashfree-iframe-container"
                           ) ||
-                          (vt(null, o),
+                          (yt(null, o),
                           ut(
                             "0",
                             ""
@@ -9299,16 +9298,16 @@
                         null));
               }
             ),
-            _defineProperty(Gt, "endAndStartTimer", function (t) {
+            _defineProperty(Ft, "endAndStartTimer", function (t) {
               var r = window.paymentWindow;
-              window.clearTimeout(Gt.timer),
-                (Gt.timer = window.setTimeout(function () {
-                  yt(), t && t(), r && r.close();
+              window.clearTimeout(Ft.timer),
+                (Ft.timer = window.setTimeout(function () {
+                  bt(), t && t(), r && r.close();
                 }, 6e5));
             });
-          var Ft,
-            Lt,
-            Ut = (function () {
+          var Lt,
+            Ut,
+            Yt = (function () {
               function CardBase(t, r, a) {
                 var o = this;
                 _classCallCheck(this, CardBase),
@@ -9363,7 +9362,7 @@
                       return (
                         (t.bankData = o.bankData),
                         (t.payData = o.payData),
-                        Gt.handlePaymentResponse(t, "card", null, r, a)
+                        Ft.handlePaymentResponse(t, "card", null, r, a)
                       );
                     }
                   ),
@@ -9445,12 +9444,12 @@
                 CardBase
               );
             })(),
-            Yt = "link",
-            $t =
+            $t = "link",
+            Ht =
               (a(8309),
               a(3123),
               function () {
-                return ($t =
+                return (Ht =
                   Object.assign ||
                   function __assign(t) {
                     for (var r, a = 1, o = arguments.length; a < o; a++)
@@ -9460,9 +9459,9 @@
                     return t;
                   }).apply(this, arguments);
               }),
-            Ht = (Object.create, Object.create, "3.3.3"),
-            qt = ["monospace", "sans-serif", "serif"],
-            Wt = [
+            qt = (Object.create, Object.create, "3.3.3"),
+            Wt = ["monospace", "sans-serif", "serif"],
+            zt = [
               "sans-serif-thin",
               "ARNO PRO",
               "Agency FB",
@@ -9516,7 +9515,7 @@
               "Vrinda",
               "ZWAdobeF",
             ],
-            zt = {
+            Vt = {
               abpIndo: [
                 "#Iklan-Melayang",
                 "#Kolom-Iklan-728",
@@ -9809,11 +9808,11 @@
                 ".yt.btn-link.btn-md.btn",
               ],
             },
-            Vt = Math,
+            Xt = Math,
             fallbackFn = function () {
               return 0;
             },
-            Xt = {
+            Kt = {
               default: [],
               apple: [{ font: "-apple-system-body" }],
               serif: [{ fontFamily: "serif" }],
@@ -9822,7 +9821,7 @@
               min: [{ fontSize: "1px" }],
               system: [{ fontFamily: "system-ui" }],
             },
-            Kt = {
+            Jt = {
               fonts: function getFonts() {
                 return withIframe(function (t, r) {
                   var a = r.document,
@@ -9844,19 +9843,19 @@
                         r
                       );
                     },
-                    d = qt.map(createSpan),
+                    d = Wt.map(createSpan),
                     p = (function () {
                       for (
                         var t = {},
                           _loop_1 = function (r) {
-                            t[r] = qt.map(function (t) {
+                            t[r] = Wt.map(function (t) {
                               return (function (t, r) {
                                 return createSpan("'" + t + "'," + r);
                               })(r, t);
                             });
                           },
                           r = 0,
-                          a = Wt;
+                          a = zt;
                         r < a.length;
                         r++
                       ) {
@@ -9865,13 +9864,13 @@
                       return t;
                     })();
                   o.appendChild(c);
-                  for (var h = 0; h < qt.length; h++)
-                    (l[qt[h]] = d[h].offsetWidth),
-                      (u[qt[h]] = d[h].offsetHeight);
-                  return Wt.filter(function (t) {
+                  for (var h = 0; h < Wt.length; h++)
+                    (l[Wt[h]] = d[h].offsetWidth),
+                      (u[Wt[h]] = d[h].offsetHeight);
+                  return zt.filter(function (t) {
                     return (
                       (r = p[t]),
-                      qt.some(function (t, a) {
+                      Wt.some(function (t, a) {
                         return (
                           r[a].offsetWidth !== l[t] ||
                           r[a].offsetHeight !== u[t]
@@ -9892,14 +9891,14 @@
                         return (function isApplicable() {
                           return isWebKit() || isAndroid();
                         })()
-                          ? ((t = Object.keys(zt)),
+                          ? ((t = Object.keys(Vt)),
                             [
                               4,
                               getBlockedSelectors(
                                 (c = []).concat.apply(
                                   c,
                                   t.map(function (t) {
-                                    return zt[t];
+                                    return Vt[t];
                                   })
                                 )
                               ),
@@ -9911,20 +9910,20 @@
                           r &&
                             (function printDebug(t) {
                               for (
-                                var r = 0, a = Object.keys(zt);
+                                var r = 0, a = Object.keys(Vt);
                                 r < a.length;
                                 r++
                               ) {
                                 var o = a[r];
                                 "\n" + o + ":";
-                                for (var c = 0, l = zt[o]; c < l.length; c++) {
+                                for (var c = 0, l = Vt[o]; c < l.length; c++) {
                                   var u = l[c];
                                   "\n  " + u + " " + (t[u] ? "🚫" : "➡️");
                                 }
                               }
                             })(a),
                           (o = t.filter(function (t) {
-                            var r = zt[t];
+                            var r = Vt[t];
                             return (
                               countTruthy(
                                 r.map(function (t) {
@@ -9965,12 +9964,12 @@
                   }, '<!doctype html><html><head><meta name="viewport" content="width=device-width, initial-scale=1">');
                 })(function (t, r) {
                   for (
-                    var a = {}, o = {}, c = 0, l = Object.keys(Xt);
+                    var a = {}, o = {}, c = 0, l = Object.keys(Kt);
                     c < l.length;
                     c++
                   ) {
                     var u = l[c],
-                      d = Xt[u],
+                      d = Kt[u],
                       p = d[0],
                       h = void 0 === p ? {} : p,
                       m = d[1],
@@ -9986,7 +9985,7 @@
                       r.appendChild(t.createElement("br")),
                       r.appendChild(g);
                   }
-                  for (var x = 0, w = Object.keys(Xt); x < w.length; x++) {
+                  for (var x = 0, w = Object.keys(Kt); x < w.length; x++) {
                     o[(u = w[x])] = a[u].getBoundingClientRect().width;
                   }
                   return o;
@@ -10408,66 +10407,66 @@
               },
               math: function getMathFingerprint() {
                 var t,
-                  r = Vt.acos || fallbackFn,
-                  a = Vt.acosh || fallbackFn,
-                  o = Vt.asin || fallbackFn,
-                  c = Vt.asinh || fallbackFn,
-                  l = Vt.atanh || fallbackFn,
-                  u = Vt.atan || fallbackFn,
-                  d = Vt.sin || fallbackFn,
-                  p = Vt.sinh || fallbackFn,
-                  h = Vt.cos || fallbackFn,
-                  m = Vt.cosh || fallbackFn,
-                  _ = Vt.tan || fallbackFn,
-                  g = Vt.tanh || fallbackFn,
-                  v = Vt.exp || fallbackFn,
-                  y = Vt.expm1 || fallbackFn,
-                  b = Vt.log1p || fallbackFn;
+                  r = Xt.acos || fallbackFn,
+                  a = Xt.acosh || fallbackFn,
+                  o = Xt.asin || fallbackFn,
+                  c = Xt.asinh || fallbackFn,
+                  l = Xt.atanh || fallbackFn,
+                  u = Xt.atan || fallbackFn,
+                  d = Xt.sin || fallbackFn,
+                  p = Xt.sinh || fallbackFn,
+                  h = Xt.cos || fallbackFn,
+                  m = Xt.cosh || fallbackFn,
+                  _ = Xt.tan || fallbackFn,
+                  g = Xt.tanh || fallbackFn,
+                  v = Xt.exp || fallbackFn,
+                  y = Xt.expm1 || fallbackFn,
+                  b = Xt.log1p || fallbackFn;
                 return {
                   acos: r(0.12312423423423424),
                   acosh: a(1e308),
-                  acoshPf: ((t = 1e154), Vt.log(t + Vt.sqrt(t * t - 1))),
+                  acoshPf: ((t = 1e154), Xt.log(t + Xt.sqrt(t * t - 1))),
                   asin: o(0.12312423423423424),
                   asinh: c(1),
                   asinhPf: (function (t) {
-                    return Vt.log(t + Vt.sqrt(t * t + 1));
+                    return Xt.log(t + Xt.sqrt(t * t + 1));
                   })(1),
                   atanh: l(0.5),
                   atanhPf: (function (t) {
-                    return Vt.log((1 + t) / (1 - t)) / 2;
+                    return Xt.log((1 + t) / (1 - t)) / 2;
                   })(0.5),
                   atan: u(0.5),
                   sin: d(-1e300),
                   sinh: p(1),
                   sinhPf: (function (t) {
-                    return Vt.exp(t) - 1 / Vt.exp(t) / 2;
+                    return Xt.exp(t) - 1 / Xt.exp(t) / 2;
                   })(1),
                   cos: h(10.000000000123),
                   cosh: m(1),
                   coshPf: (function (t) {
-                    return (Vt.exp(t) + 1 / Vt.exp(t)) / 2;
+                    return (Xt.exp(t) + 1 / Xt.exp(t)) / 2;
                   })(1),
                   tan: _(-1e300),
                   tanh: g(1),
                   tanhPf: (function (t) {
-                    return (Vt.exp(2 * t) - 1) / (Vt.exp(2 * t) + 1);
+                    return (Xt.exp(2 * t) - 1) / (Xt.exp(2 * t) + 1);
                   })(1),
                   exp: v(1),
                   expm1: y(1),
                   expm1Pf: (function (t) {
-                    return Vt.exp(t) - 1;
+                    return Xt.exp(t) - 1;
                   })(1),
                   log1p: b(10),
                   log1pPf: (function (t) {
-                    return Vt.log(1 + t);
+                    return Xt.log(1 + t);
                   })(10),
                   powPI: (function (t) {
-                    return Vt.pow(Vt.PI, t);
+                    return Xt.pow(Xt.PI, t);
                   })(-100),
                 };
               },
             };
-          const Jt = {
+          const Zt = {
               load: function load(t) {
                 var r = void 0 === t ? {} : t,
                   a = r.delayFallback,
@@ -10503,7 +10502,7 @@
                             2,
                             makeAgent(
                               (function loadBuiltinSources(t) {
-                                return loadSources(Kt, t, []);
+                                return loadSources(Jt, t, []);
                               })({ debug: o }),
                               o
                             ),
@@ -10521,7 +10520,7 @@
                     return r instanceof Error
                       ? (function errorToObject(t) {
                           var r;
-                          return $t(
+                          return Ht(
                             {
                               name: t.name,
                               message: t.message,
@@ -10539,7 +10538,7 @@
                 );
               },
             },
-            Zt = function track(t, r) {
+            Qt = function track(t, r) {
               var a = arguments;
               return asyncToGenerator_asyncToGenerator(
                 c().mark(function _callee() {
@@ -10557,7 +10556,7 @@
                           }
                           return c.abrupt("return");
                         case 3:
-                          return (c.next = 5), Jt.load();
+                          return (c.next = 5), Zt.load();
                         case 5:
                           return (l = c.sent), (c.next = 8), l.get();
                         case 8:
@@ -10567,7 +10566,7 @@
                               {},
                               { userString: { value: "" } }
                             )),
-                            (p = Jt.hashComponents(d)),
+                            (p = Zt.hashComponents(d)),
                             (h = ht().parse(window.navigator.userAgent)),
                             (m =
                               document
@@ -10618,7 +10617,7 @@
                 })
               )();
             };
-          var Qt = (function (t) {
+          var en = (function (t) {
               function Card(t, a) {
                 var o;
                 return (
@@ -10674,7 +10673,7 @@
                                     (d = rt(u.cardNumber)),
                                     (p = {
                                       card: {
-                                        channel: a ? Yt : "post",
+                                        channel: a ? $t : "post",
                                         card_number: o._state.cardNumber,
                                         card_holder_name: o._state.cardHolder,
                                         card_expiry_mm:
@@ -10684,7 +10683,7 @@
                                       },
                                     }),
                                     (c.next = 6),
-                                    Gt.pay(t, p, "card", r, l)
+                                    Ft.pay(t, p, "card", r, l)
                                   );
                                 case 6:
                                   return (
@@ -10713,23 +10712,23 @@
                   o._validator.checkElementsValidity(t),
                   o._syncState(),
                   o._registerListeners(),
-                  Zt("open_card"),
+                  Qt("open_card"),
                   o
                 );
               }
               _inherits(Card, t);
               var r = Card_createSuper(Card);
               return Card;
-            })(Ut),
-            en =
+            })(Yt),
+            tn =
               (a(4812),
               function isValidPhoneNumber(t) {
                 return Ke.test(t);
               }),
-            tn = function checkInputValidity(t) {
+            nn = function checkInputValidity(t) {
               var r = et([Ce, Te]);
               return (
-                en(t.phoneNumber) ||
+                tn(t.phoneNumber) ||
                   ((r.errors[0].error = !0),
                   (r.errors[0].message = "invalid phone number")),
                 t.appName ||
@@ -10739,12 +10738,12 @@
                 r
               );
             },
-            nn = function checkPaymentRequestValidity(t) {
-              if (!en(t.phoneNumber))
+            rn = function checkPaymentRequestValidity(t) {
+              if (!tn(t.phoneNumber))
                 throw new Ue("invalid phone number", Se, "app");
               if (!t.appName) throw new Ue("invalid app name", Se, "app");
             },
-            rn = function App(t, r) {
+            an = function App(t, r) {
               var a = this;
               _classCallCheck(this, App),
                 _defineProperty(this, "_syncState", function () {
@@ -10771,11 +10770,11 @@
                 }),
                 _defineProperty(this, "_handlePhoneNumberChange", function () {
                   (a._state.phoneNumber = a._phoneNumberElement.value),
-                    a._onChange && a._onChange(tn(a._state));
+                    a._onChange && a._onChange(nn(a._state));
                 }),
                 _defineProperty(this, "_handleAppNameChange", function () {
                   (a._state.appName = a._appNameElement.value),
-                    a._onChange && a._onChange(tn(a._state));
+                    a._onChange && a._onChange(nn(a._state));
                 }),
                 _defineProperty(this, "isValid", function () {
                   return !!a._state.appName;
@@ -10793,7 +10792,7 @@
                               case 0:
                                 return (
                                   a._syncState(),
-                                  nn(a._state),
+                                  rn(a._state),
                                   (l = {
                                     app: {
                                       channel: a._state.appName,
@@ -10801,7 +10800,7 @@
                                     },
                                   }),
                                   (c.next = 5),
-                                  Gt.pay(t, l, "app", r, o)
+                                  Ft.pay(t, l, "app", r, o)
                                 );
                               case 5:
                                 return (
@@ -10843,7 +10842,7 @@
                             )
                             .concat(a._statusToken)
                         ),
-                      Gt.handlePaymentResponse(
+                      Ft.handlePaymentResponse(
                         t,
                         a._state.channel,
                         a._statusToken,
@@ -10864,9 +10863,9 @@
                 })(t),
                 this._syncState(),
                 this._registerListener(),
-                Zt("open_app");
+                Qt("open_app");
             },
-            an = function QrCode() {
+            on = function QrCode() {
               var t = this;
               _classCallCheck(this, QrCode),
                 _defineProperty(
@@ -10883,7 +10882,7 @@
                                 return (
                                   (l = { upi: { channel: "qrcode" } }),
                                   (c.next = 3),
-                                  Gt.intentPay(r, l, "upi-qrcode", a, o)
+                                  Ft.intentPay(r, l, "upi-qrcode", a, o)
                                 );
                               case 3:
                                 return (
@@ -10958,16 +10957,16 @@
                     );
                 });
             },
-            on = a(7251),
-            sn = {};
-          (sn.styleTagTransform = Pt()),
-            (sn.setAttributes = Ct()),
-            (sn.insert = At().bind(null, "head")),
-            (sn.domAPI = wt()),
-            (sn.insertStyleElement = Ot());
-          Et()(on.Z, sn);
-          on.Z && on.Z.locals && on.Z.locals;
-          var cn = (function () {
+            sn = a(7251),
+            cn = {};
+          (cn.styleTagTransform = Bt()),
+            (cn.setAttributes = Tt()),
+            (cn.insert = kt().bind(null, "head")),
+            (cn.domAPI = St()),
+            (cn.insertStyleElement = It());
+          xt()(sn.Z, cn);
+          sn.Z && sn.Z.locals && sn.Z.locals;
+          var ln = (function () {
               function IntentModal() {
                 _classCallCheck(this, IntentModal),
                   _defineProperty(this, "renderCrossIcon", function () {
@@ -11012,11 +11011,11 @@
                 IntentModal
               );
             })(),
-            ln = "INR",
-            un = function paymentIntentAvailable() {
+            un = "INR",
+            dn = function paymentIntentAvailable() {
               return !!window.PaymentRequest;
             },
-            dn = function getOrderDetails(t, r) {
+            pn = function getOrderDetails(t, r) {
               return {
                 total: { label: "Total", amount: { currency: t, value: r } },
                 displayItems: [
@@ -11027,7 +11026,7 @@
                 ],
               };
             },
-            pn = function checkCanMakePayment(t) {
+            fn = function checkCanMakePayment(t) {
               var r = Promise.resolve(!0);
               return (
                 t.canMakePayment && (r = t.canMakePayment()),
@@ -11038,7 +11037,7 @@
                   .catch(function (t) {})
               );
             },
-            fn = (function () {
+            hn = (function () {
               var t = asyncToGenerator_asyncToGenerator(
                 c().mark(function _callee() {
                   var t, r;
@@ -11057,12 +11056,12 @@
                                 },
                               },
                             ]),
-                            (r = dn(ln, "1")),
+                            (r = pn(un, "1")),
                             a.abrupt(
                               "return",
                               new Promise(function (a, o) {
                                 var c = null;
-                                un() || o(!1);
+                                dn() || o(!1);
                                 try {
                                   c = new PaymentRequest(t, r);
                                 } catch (t) {
@@ -11071,7 +11070,7 @@
                                   );
                                 }
                                 return c
-                                  ? (pn(c)
+                                  ? (fn(c)
                                       .then(function (t) {
                                         return a(t);
                                       })
@@ -11099,7 +11098,7 @@
                 return t.apply(this, arguments);
               };
             })(),
-            hn = (function () {
+            mn = (function () {
               var t = asyncToGenerator_asyncToGenerator(
                 c().mark(function _callee2(t) {
                   var r, a;
@@ -11121,12 +11120,12 @@
                                 },
                               },
                             ]),
-                            (a = dn(ln, "1")),
+                            (a = pn(un, "1")),
                             o.abrupt(
                               "return",
                               new Promise(function (t, o) {
                                 var c = null;
-                                un() || o(!1);
+                                dn() || o(!1);
                                 try {
                                   c = new PaymentRequest(r, a);
                                 } catch (t) {
@@ -11135,7 +11134,7 @@
                                   );
                                 }
                                 return c
-                                  ? (pn(c)
+                                  ? (fn(c)
                                       .then(function (r) {
                                         return t(r);
                                       })
@@ -11163,12 +11162,12 @@
                 return t.apply(this, arguments);
               };
             })(),
-            mn = function isValidUpiProvider(t) {
+            _n = function isValidUpiProvider(t) {
               return (
                 -1 !== ["gpay", "phonepe", "paytm", "bhim", "others"].indexOf(t)
               );
             },
-            _n = function checkCollectInputValidity(t) {
+            gn = function checkCollectInputValidity(t) {
               var r = et([Oe]);
               return (
                 (function isValidUpiId(t) {
@@ -11180,11 +11179,11 @@
                 r
               );
             },
-            gn = function checkIntentPaymentRequestValidity(t) {
-              if (!mn(t.upiProvider))
+            vn = function checkIntentPaymentRequestValidity(t) {
+              if (!_n(t.upiProvider))
                 throw new Ue("no UPI provider provided.", Se);
             },
-            vn = function Intent(t, r) {
+            yn = function Intent(t, r) {
               var a = this;
               _classCallCheck(this, Intent),
                 _defineProperty(this, "_syncState", function () {
@@ -11203,7 +11202,7 @@
                                 return (
                                   (t.prev = 0),
                                   (t.next = 3),
-                                  hn("https://tez.google.com/pay")
+                                  mn("https://tez.google.com/pay")
                                 );
                               case 3:
                                 (a._state.isGpayIntentSupported = t.sent),
@@ -11212,7 +11211,7 @@
                               case 7:
                                 (t.prev = 7), (t.t0 = t.catch(0));
                               case 10:
-                                return (t.prev = 10), (t.next = 13), fn();
+                                return (t.prev = 10), (t.next = 13), hn();
                               case 13:
                                 (a._state.isPhonepeIntentSupported = t.sent),
                                   (t.next = 20);
@@ -11250,7 +11249,7 @@
                         (function checkIntentInputValidity(t) {
                           var r = et([Ie]);
                           return (
-                            mn(t.upiProvider) ||
+                            _n(t.upiProvider) ||
                               ((r.errors[0].error = !0),
                               (r.errors[0].message = "invalid upi provider")),
                             (r.isReadyToPay = tt(r.errors)),
@@ -11275,7 +11274,7 @@
                               case 0:
                                 return (
                                   a._syncState(),
-                                  gn(a._state),
+                                  vn(a._state),
                                   (l = {
                                     upi: {
                                       channel: "link",
@@ -11283,7 +11282,7 @@
                                     },
                                   }),
                                   (c.next = 5),
-                                  Gt.intentPay(t, l, "upi-intent", r, o)
+                                  Ft.intentPay(t, l, "upi-intent", r, o)
                                 );
                               case 5:
                                 return (
@@ -11304,7 +11303,7 @@
                   })()
                 ),
                 _defineProperty(this, "iosAppOpened", function () {
-                  vt(null, a.abortCallback),
+                  yt(null, a.abortCallback),
                     ut(
                       "0",
                       ""
@@ -11350,25 +11349,34 @@
                             (r = "tez://upi/pay" + l)),
                     t.includes("payments-test.cashfree.com") && (r = t),
                     c)
-                  )
-                    return (
-                      new cn().renderModal(
+                  ) {
+                    if ("AppleSafari" === _t()) {
+                      new ln().renderModal(
                         t,
                         a._state.upiProvider,
                         a.iosAppOpened,
                         a.abortCallback
-                      ),
-                      "modal"
-                    );
+                      );
+                    } else {
+                      var u = document.getElementById("iosupi");
+                      null == u &&
+                        ((u = document.createElement("a")).id = "iosupi"),
+                        (u.href = t),
+                        (u.onclick = a.iosAppOpened),
+                        document.body.appendChild(u),
+                        document.getElementById("iosupi").click();
+                    }
+                    return "modal";
+                  }
                   if (o) {
-                    var u = document.createElement("a"),
-                      d = document.createTextNode("");
+                    var d = document.createElement("a"),
+                      p = document.createTextNode("");
                     return (
-                      u.appendChild(d),
-                      (u.title = ""),
-                      (u.href = r),
-                      (u.target = "_blank"),
-                      u.click(),
+                      d.appendChild(p),
+                      (d.title = ""),
+                      (d.href = r),
+                      (d.target = "_blank"),
+                      d.click(),
                       "href"
                     );
                   }
@@ -11398,7 +11406,7 @@
                                     (u = window),
                                     (d = u.paymentWindow),
                                     (o.prev = 3),
-                                    mn(a._state.upiProvider)
+                                    _n(a._state.upiProvider)
                                       ? ((p = ""),
                                         (p = t.data.payload[
                                           a._state.upiProvider
@@ -11406,7 +11414,7 @@
                                           ? t.data.payload[a._state.upiProvider]
                                           : t.data.payload.default),
                                         "href" === a.openLink(p, r) &&
-                                          (vt(null, r),
+                                          (yt(null, r),
                                           ut(
                                             "0",
                                             ""
@@ -11459,9 +11467,9 @@
                 })(t),
                 this._syncState(),
                 this._registerListeners(),
-                Zt("open_intent");
+                Qt("open_intent");
             },
-            yn = function Collect(t, r) {
+            bn = function Collect(t, r) {
               var a = this;
               _classCallCheck(this, Collect),
                 _defineProperty(this, "_syncState", function () {
@@ -11477,7 +11485,7 @@
                 }),
                 _defineProperty(this, "_handleVpaChange", function () {
                   (a._state.upiId = a._vpaElement.value),
-                    a._onChange && a._onChange(_n(a._state));
+                    a._onChange && a._onChange(gn(a._state));
                 }),
                 _defineProperty(this, "isValid", function () {
                   return !(!a._state.upiId || !Qe.test(a._state.upiId));
@@ -11507,7 +11515,7 @@
                                     },
                                   }),
                                   (c.next = 5),
-                                  Gt.intentPay(t, l, "upi-collect", r, o)
+                                  Ft.intentPay(t, l, "upi-collect", r, o)
                                 );
                               case 5:
                                 return (
@@ -11539,7 +11547,7 @@
                           { paymentMode: "upi-collect" }
                         )
                       ),
-                      Gt.handlePaymentResponse(t, "collect", a._statusToken, r)
+                      Ft.handlePaymentResponse(t, "collect", a._statusToken, r)
                     );
                   }
                 ),
@@ -11553,27 +11561,27 @@
                 this._setSelector(),
                 this._syncState(),
                 this._registerListeners(),
-                Zt("open_collect");
+                Qt("open_collect");
             },
-            bn = function isValidBankCode(t) {
+            En = function isValidBankCode(t) {
               return !!t;
             },
-            En = function isValidIfscCode(t) {
+            xn = function isValidIfscCode(t) {
               return Je.test(t);
             },
-            xn = function isValidAccountNumber(t) {
+            wn = function isValidAccountNumber(t) {
               return Ze.test(t);
             },
-            wn = function checkInputValidity(t, r) {
+            Sn = function checkInputValidity(t, r) {
               var a = et([Be]);
               return (
-                bn(t.bankCode) ||
+                En(t.bankCode) ||
                   ((a.errors[0].error = !0),
                   (a.errors[0].message = "invalid bank code")),
                 ((a = (function checkInputValidityForOptionalFields(t, r, a) {
                   var o = NetBankingValidation_objectSpread({}, a);
                   if (null != r.querySelector(Ne))
-                    if (En(t.ifscCode)) {
+                    if (xn(t.ifscCode)) {
                       var c = { element: Ne, error: !1, message: "" };
                       o.errors[1] = NetBankingValidation_objectSpread(
                         NetBankingValidation_objectSpread({}, o.errors[1]),
@@ -11591,7 +11599,7 @@
                       );
                     }
                   if (null != r.querySelector(Re))
-                    if (xn(t.accountNumber)) {
+                    if (wn(t.accountNumber)) {
                       var u = { element: Re, error: !1, message: "" };
                       o.errors[2] = NetBankingValidation_objectSpread(
                         NetBankingValidation_objectSpread({}, o.errors[1]),
@@ -11613,14 +11621,14 @@
                 a
               );
             },
-            Sn = function checkPaymentRequestValidity(t, r) {
-              if (!bn(t.bankCode)) throw new Ue("invalid bank code", Se);
-              if (null != r.querySelector(Ne) && !En(t.ifscCode))
+            An = function checkPaymentRequestValidity(t, r) {
+              if (!En(t.bankCode)) throw new Ue("invalid bank code", Se);
+              if (null != r.querySelector(Ne) && !xn(t.ifscCode))
                 throw new Ue("invalid ifsc code", Se);
-              if (null != r.querySelector(Re) && !xn(t.accountNumber))
+              if (null != r.querySelector(Re) && !wn(t.accountNumber))
                 throw new Ue("invalid account number", Se);
             },
-            An = function NetBanking(t, r) {
+            kn = function NetBanking(t, r) {
               var a = this;
               _classCallCheck(this, NetBanking),
                 _defineProperty(this, "_syncState", function () {
@@ -11668,12 +11676,12 @@
                 _defineProperty(this, "_handleBankCodeChange", function () {
                   (a._state.bankCode = a._bankCodeElement.value),
                     a._onChange &&
-                      a._onChange(wn(a._state, a._netBankingElement));
+                      a._onChange(Sn(a._state, a._netBankingElement));
                 }),
                 _defineProperty(this, "_handleIfscCodeChange", function () {
                   (a._state.ifscCode = a._ifscCodeElement.value),
                     a._onChange &&
-                      a._onChange(wn(a._state, a._netBankingElement));
+                      a._onChange(Sn(a._state, a._netBankingElement));
                 }),
                 _defineProperty(
                   this,
@@ -11681,7 +11689,7 @@
                   function () {
                     (a._state.accountNumber = a._accountNumberElement.value),
                       a._onChange &&
-                        a._onChange(wn(a._state, a._netBankingElement));
+                        a._onChange(Sn(a._state, a._netBankingElement));
                   }
                 ),
                 _defineProperty(this, "isValid", function () {
@@ -11700,7 +11708,7 @@
                               case 0:
                                 return (
                                   a._syncState(),
-                                  Sn(a._state, a._netBankingElement),
+                                  An(a._state, a._netBankingElement),
                                   (l = {
                                     netbanking: {
                                       channel: "link",
@@ -11714,7 +11722,7 @@
                                     },
                                   }),
                                   (c.next = 5),
-                                  Gt.pay(t, l, "netbanking", r, o)
+                                  Ft.pay(t, l, "netbanking", r, o)
                                 );
                               case 5:
                                 return (
@@ -11746,7 +11754,7 @@
                           { paymentMode: "netbanking" }
                         )
                       ),
-                      Gt.handlePaymentResponse(t, "netbanking", null, r)
+                      Ft.handlePaymentResponse(t, "netbanking", null, r)
                     );
                   }
                 ),
@@ -11765,7 +11773,7 @@
                 this._syncState(),
                 this._registerListeners();
             },
-            kn = (function (t) {
+            Cn = (function (t) {
               function EMI(t, a) {
                 var o, l;
                 return (
@@ -11877,7 +11885,7 @@
                                     ),
                                     (o = {
                                       emi: {
-                                        channel: Yt,
+                                        channel: $t,
                                         card_number: l._state.cardNumber,
                                         card_expiry_mm:
                                           l._state.cardExpiryMonth,
@@ -11891,7 +11899,7 @@
                                       },
                                     }),
                                     (c.next = 4),
-                                    Gt.pay(t, o, "emi", r, a)
+                                    Ft.pay(t, o, "emi", r, a)
                                   );
                                 case 4:
                                   return (
@@ -11942,8 +11950,8 @@
                 ]),
                 EMI
               );
-            })(Ut),
-            Cn = function CashfreeDOM(t) {
+            })(Yt),
+            Tn = function CashfreeDOM(t) {
               var r = this;
               _classCallCheck(this, CashfreeDOM),
                 _defineProperty(this, "on", function (t, a) {
@@ -11955,11 +11963,11 @@
                 (this._payObj = t);
             };
           a(1038), a(1817), a(2165), a(5212), a(3210);
-          const Tn = {
+          const On = {
             PAY_LATER: { 4503: { MAX_AMOUNT: 1e4 }, 4506: { MIN_AMOUNT: 100 } },
             CARDLESS_EMI: { 6061: { MIN_AMOUNT: 1e3 } },
           };
-          var On = function isCardSupported(t) {
+          var In = function isCardSupported(t) {
               return (
                 t.CREDIT_CARD ||
                 t.DEBIT_CARD ||
@@ -11967,22 +11975,22 @@
                 t.PREPAID_CARD
               );
             },
-            In = function isAppSupported(t) {
+            Pn = function isAppSupported(t) {
               return !(!t.Wallet && !t.App);
             },
-            Pn = function isNetBankingSupported(t) {
+            Bn = function isNetBankingSupported(t) {
               return !!t.NET_BANKING;
             },
-            Bn = function isUpiSupported(t) {
+            Nn = function isUpiSupported(t) {
               return !!t.UPI;
             },
-            Nn = function isPaylaterSupported(t) {
+            Rn = function isPaylaterSupported(t) {
               return !!t.PAY_LATER;
             },
-            Rn = function isCreditEmiSupported(t, r) {
+            Dn = function isCreditEmiSupported(t, r) {
               return !!(t.CREDIT_CARD_EMI && r && r.length);
             },
-            Dn = function isCardlessEMISupported(t) {
+            Mn = function isCardlessEMISupported(t) {
               if (t.CARDLESS_EMI) {
                 var r,
                   a = _createForOfIteratorHelper(t.CARDLESS_EMI);
@@ -11999,7 +12007,7 @@
               }
               return !1;
             },
-            Mn = function getSupportedApps(t) {
+            jn = function getSupportedApps(t) {
               var r = [];
               return (
                 t.forEach(function (t) {
@@ -12009,7 +12017,7 @@
                 r
               );
             },
-            jn = function getSupportedNetBankingOptions(t) {
+            Gn = function getSupportedNetBankingOptions(t) {
               var r = [];
               return (
                 t.forEach(function (t) {
@@ -12024,7 +12032,7 @@
                 r
               );
             },
-            Gn = function getSupportedCards(t, r) {
+            Fn = function getSupportedCards(t, r) {
               var a = [];
               return (
                 t.forEach(function (t) {
@@ -12038,7 +12046,7 @@
                 a
               );
             },
-            Fn = (function () {
+            Ln = (function () {
               var t = asyncToGenerator_asyncToGenerator(
                 c().mark(function _callee() {
                   var t, r;
@@ -12075,9 +12083,9 @@
                 return t.apply(this, arguments);
               };
             })(),
-            Ln = function getSupportedPaylaterOptions(t, r) {
+            Un = function getSupportedPaylaterOptions(t, r) {
               var a = [],
-                o = Tn.PAY_LATER;
+                o = On.PAY_LATER;
               return (
                 t.forEach(function (t) {
                   var c = o[t.code] && o[t.code].MIN_AMOUNT,
@@ -12091,7 +12099,7 @@
                 a
               );
             },
-            Un = function getSupportedCreditEmiOptions(t) {
+            Yn = function getSupportedCreditEmiOptions(t) {
               var r = [];
               return (
                 t &&
@@ -12105,7 +12113,7 @@
                 r
               );
             },
-            Yn = function getSupportedCardlessOptions(t) {
+            $n = function getSupportedCardlessOptions(t) {
               var r = [];
               return (
                 t.some(function (t) {
@@ -12117,7 +12125,7 @@
                 r
               );
             },
-            $n = function SlicePaymentModes(t, r) {
+            Hn = function SlicePaymentModes(t, r) {
               var a = {
                   upi: "UPI",
                   dc: "DEBIT_CARD",
@@ -12150,7 +12158,7 @@
                 return r;
               }
             },
-            Hn = function processModes(t, r) {
+            qn = function processModes(t, r) {
               return (
                 Object.keys(r).forEach(function (a) {
                   -1 === t.indexOf(a) && (r[a] = null);
@@ -12158,11 +12166,11 @@
                 r
               );
             },
-            qn = function PaymentConfig() {
+            Wn = function PaymentConfig() {
               _classCallCheck(this, PaymentConfig);
             };
           _defineProperty(
-            qn,
+            Wn,
             "getSupportedPaymentOptions",
             (function () {
               var t = asyncToGenerator_asyncToGenerator(
@@ -12186,7 +12194,7 @@
                         case 4:
                           return (
                             (o.next = 6),
-                            Mt(
+                            jt(
                               ""
                                 .concat(
                                   "https://sandbox.cashfree.com/pg",
@@ -12218,7 +12226,7 @@
                         case 10:
                           return o.abrupt(
                             "return",
-                            Gn(
+                            Fn(
                               a.paymentSettings.paymentModes.DEBIT_CARD,
                               a.paymentSettings.paymentModes.CREDIT_CARD
                             )
@@ -12226,29 +12234,29 @@
                         case 11:
                           return o.abrupt(
                             "return",
-                            Mn(a.paymentSettings.paymentModes.Wallet)
+                            jn(a.paymentSettings.paymentModes.Wallet)
                           );
                         case 12:
                           return o.abrupt(
                             "return",
-                            jn(a.paymentSettings.paymentModes.NET_BANKING)
+                            Gn(a.paymentSettings.paymentModes.NET_BANKING)
                           );
                         case 13:
-                          return o.abrupt("return", Fn());
+                          return o.abrupt("return", Ln());
                         case 14:
                           return o.abrupt(
                             "return",
-                            Ln(
+                            Un(
                               a.paymentSettings.paymentModes.PAY_LATER,
                               a.orderDetails.orderAmount
                             )
                           );
                         case 15:
-                          return o.abrupt("return", Un(a.emiDetails));
+                          return o.abrupt("return", Yn(a.emiDetails));
                         case 16:
                           return o.abrupt(
                             "return",
-                            Yn(a.paymentSettings.paymentModes.CARDLESS_EMI)
+                            $n(a.paymentSettings.paymentModes.CARDLESS_EMI)
                           );
                         case 17:
                           return o.abrupt("return", []);
@@ -12265,7 +12273,7 @@
             })()
           ),
             _defineProperty(
-              qn,
+              Wn,
               "getSupportedPaymentModes",
               (function () {
                 var t = asyncToGenerator_asyncToGenerator(
@@ -12284,7 +12292,7 @@
                             return (
                               (r = []),
                               (c.next = 5),
-                              Mt(
+                              jt(
                                 ""
                                   .concat(
                                     "https://sandbox.cashfree.com/pg",
@@ -12301,21 +12309,21 @@
                               (u = o.enabledModes),
                               (d = a.emiDetails),
                               (p = a.orderDetails),
-                              (h = $n(p.paymentModes, u)),
-                              (m = Hn(h, l)),
-                              On(m) && r.push("card"),
-                              In(m) && r.push("app"),
-                              Pn(m) && r.push("netbanking"),
-                              Bn(m) &&
+                              (h = Hn(p.paymentModes, u)),
+                              (m = qn(h, l)),
+                              In(m) && r.push("card"),
+                              Pn(m) && r.push("app"),
+                              Bn(m) && r.push("netbanking"),
+                              Nn(m) &&
                                 (r.push("upi-qrcode"),
                                 r.push("upi-collect"),
                                 mt() && r.push("upi-intent"),
                                 r.push("upi")),
-                              Rn(m, d) &&
+                              Dn(m, d) &&
                                 p.orderAmount >= 2500 &&
                                 r.push("creditcardemi"),
-                              Nn(m) && r.push("paylater"),
-                              Dn(m) &&
+                              Rn(m) && r.push("paylater"),
+                              Mn(m) &&
                                 p.orderAmount >= 500 &&
                                 r.push("cardlessemi"),
                               c.abrupt("return", r)
@@ -12333,7 +12341,7 @@
               })()
             ),
             _defineProperty(
-              qn,
+              Wn,
               "getOrderDetails",
               (function () {
                 var t = asyncToGenerator_asyncToGenerator(
@@ -12351,7 +12359,7 @@
                           case 2:
                             return (
                               (a.next = 4),
-                              Mt(
+                              jt(
                                 ""
                                   .concat(
                                     "https://sandbox.cashfree.com/pg",
@@ -12377,7 +12385,7 @@
               })()
             ),
             _defineProperty(
-              qn,
+              Wn,
               "getTheme",
               (function () {
                 var t = asyncToGenerator_asyncToGenerator(
@@ -12395,7 +12403,7 @@
                           case 2:
                             return (
                               (c.next = 4),
-                              Mt(
+                              jt(
                                 ""
                                   .concat(
                                     "https://sandbox.cashfree.com/pg",
@@ -12432,14 +12440,14 @@
                 };
               })()
             );
-          const Wn = qn;
-          var zn = function isValidPhoneNumber(t) {
+          const zn = Wn;
+          var Vn = function isValidPhoneNumber(t) {
               return Ke.test(t);
             },
-            Vn = function checkInputValidity(t) {
+            Xn = function checkInputValidity(t) {
               var r = et([Me, je]);
               return (
-                zn(t.phoneNumber) ||
+                Vn(t.phoneNumber) ||
                   ((r.errors[0].error = !0),
                   (r.errors[0].message = "invalid phone number")),
                 t.provider ||
@@ -12449,13 +12457,13 @@
                 r
               );
             },
-            Xn = function checkPaymentRequestValidity(t) {
-              if (!zn(t.phoneNumber))
+            Kn = function checkPaymentRequestValidity(t) {
+              if (!Vn(t.phoneNumber))
                 throw new Ue("invalid phone number", Se, "paylater");
               if (!t.provider)
                 throw new Ue("invalid provider name", Se, "paylater");
             },
-            Kn = function Paylater(t, r) {
+            Jn = function Paylater(t, r) {
               var a = this;
               _classCallCheck(this, Paylater),
                 _defineProperty(this, "_syncState", function () {
@@ -12483,11 +12491,11 @@
                 }),
                 _defineProperty(this, "_handlePhoneNumberChange", function () {
                   (a._state.phoneNumber = a._phoneNumberElement.value),
-                    a._onChange && a._onChange(Vn(a._state));
+                    a._onChange && a._onChange(Xn(a._state));
                 }),
                 _defineProperty(this, "_handleProviderNameChange", function () {
                   (a._state.provider = a._paylaterElement.value),
-                    a._onChange && a._onChange(Vn(a._state));
+                    a._onChange && a._onChange(Xn(a._state));
                 }),
                 _defineProperty(this, "isValid", function () {
                   return !!a._state.provider;
@@ -12505,7 +12513,7 @@
                               case 0:
                                 return (
                                   a._syncState(),
-                                  Xn(a._state),
+                                  Kn(a._state),
                                   "Kotak Paylater" === (l = a._state.provider)
                                     ? (l = "kotak")
                                     : "zestmoneypaylater" === l
@@ -12519,7 +12527,7 @@
                                     },
                                   }),
                                   (c.next = 7),
-                                  Gt.pay(t, u, "paylater", r, o)
+                                  Ft.pay(t, u, "paylater", r, o)
                                 );
                               case 7:
                                 return (
@@ -12563,7 +12571,7 @@
                             .concat(a._statusToken)
                         ),
                       (t.payData = a.payData),
-                      Gt.handlePaymentResponse(
+                      Ft.handlePaymentResponse(
                         t,
                         a._state.channel,
                         a._statusToken,
@@ -12585,15 +12593,15 @@
                 })(t),
                 this._syncState(),
                 this._registerListener(),
-                Zt("open_paylater");
+                Qt("open_paylater");
             },
-            Jn = function isValidPhoneNumber(t) {
+            Zn = function isValidPhoneNumber(t) {
               return Ke.test(t);
             },
-            Zn = function checkInputValidity(t) {
+            Qn = function checkInputValidity(t) {
               var r = et([Ge, Fe]);
               return (
-                Jn(t.phoneNumber) ||
+                Zn(t.phoneNumber) ||
                   ((r.errors[0].error = !0),
                   (r.errors[0].message = "invalid phone number")),
                 t.provider ||
@@ -12603,13 +12611,13 @@
                 r
               );
             },
-            Qn = function checkPaymentRequestValidity(t) {
-              if (!Jn(t.phoneNumber))
+            er = function checkPaymentRequestValidity(t) {
+              if (!Zn(t.phoneNumber))
                 throw new Ue("invalid phone number", Se, "cardlessEmi");
               if (!t.provider)
                 throw new Ue("invalid provider", Se, "cardlessEmi");
             },
-            er = (function () {
+            tr = (function () {
               function cardlessEMI(t, r) {
                 var a = this;
                 _classCallCheck(this, cardlessEMI),
@@ -12632,7 +12640,7 @@
                     "_handleProviderNameChange",
                     function () {
                       (a._state.provider = a._providerElement.value),
-                        a._onChange && a._onChange(Zn(a._state));
+                        a._onChange && a._onChange(Qn(a._state));
                     }
                   ),
                   _defineProperty(
@@ -12640,7 +12648,7 @@
                     "_handlePhoneNumberChange",
                     function () {
                       (a._state.phoneNumber = a._phoneNumberElement.value),
-                        a._onChange && a._onChange(Zn(a._state));
+                        a._onChange && a._onChange(Qn(a._state));
                     }
                   ),
                   _defineProperty(this, "_setSelectors", function () {
@@ -12665,16 +12673,16 @@
                                 case 0:
                                   return (
                                     a._syncState(),
-                                    Qn(a._state),
+                                    er(a._state),
                                     (l = {
                                       cardless_emi: {
-                                        channel: Yt,
+                                        channel: $t,
                                         provider: a._state.provider,
                                         phone: a._state.phoneNumber,
                                       },
                                     }),
                                     (c.next = 5),
-                                    Gt.pay(t, l, "cardlessemi", r, o)
+                                    Ft.pay(t, l, "cardlessemi", r, o)
                                   );
                                 case 5:
                                   return (
@@ -12696,7 +12704,7 @@
                     this,
                     "handlePaymentResponse",
                     function (t, r) {
-                      return Gt.handlePaymentResponse(
+                      return Ft.handlePaymentResponse(
                         t,
                         "cardlessemi",
                         null,
@@ -12716,7 +12724,7 @@
                   })(t),
                   this._syncState(),
                   this._registerListeners(),
-                  Zt("open_cardless");
+                  Qt("open_cardless");
               }
               return (
                 _createClass(cardlessEMI, [
@@ -12732,13 +12740,13 @@
                 cardlessEMI
               );
             })(),
-            tr = new WeakMap(),
             nr = new WeakMap(),
-            rr = function Cashfree(t) {
+            rr = new WeakMap(),
+            ar = function Cashfree(t) {
               var r = this;
               if (
                 (_classCallCheck(this, Cashfree),
-                tr.set(this, {
+                nr.set(this, {
                   writable: !0,
                   value: {
                     onPaymentSuccess: null,
@@ -12746,7 +12754,7 @@
                     onError: null,
                   },
                 }),
-                nr.set(this, { writable: !0, value: !1 }),
+                rr.set(this, { writable: !0, value: !1 }),
                 _defineProperty(this, "element", function (t) {
                   try {
                     switch (
@@ -12754,54 +12762,54 @@
                     ) {
                       case "card":
                         return (
-                          (r._card = new Qt(t.pay, t.onChange)), new Cn(r._card)
+                          (r._card = new en(t.pay, t.onChange)), new Tn(r._card)
                         );
                       case "netbanking":
                         return (
-                          (r._netBanking = new An(t.pay, t.onChange)),
-                          new Cn(r._netBanking)
+                          (r._netBanking = new kn(t.pay, t.onChange)),
+                          new Tn(r._netBanking)
                         );
                       case "app":
                         return (
-                          (r._app = new rn(t.pay, t.onChange)), new Cn(r._app)
+                          (r._app = new an(t.pay, t.onChange)), new Tn(r._app)
                         );
                       case "upi-qrcode":
-                        r._qrCode = new an();
+                        r._qrCode = new on();
                         break;
                       case "upi-collect":
                         return (
-                          (r._collect = new yn(t.pay, t.onChange)),
-                          new Cn(r._collect)
+                          (r._collect = new bn(t.pay, t.onChange)),
+                          new Tn(r._collect)
                         );
                       case "upi-intent":
                         return (
-                          (r._intent = new vn(t.pay, t.onChange)),
+                          (r._intent = new yn(t.pay, t.onChange)),
                           r._intent._checkIntentSupport(),
-                          new Cn(r._intent)
+                          new Tn(r._intent)
                         );
                       case "emi":
                         return (
-                          (r._emi = new kn(t.pay, t.onChange)), new Cn(r._emi)
+                          (r._emi = new Cn(t.pay, t.onChange)), new Tn(r._emi)
                         );
                       case "paylater":
                         return (
-                          (r._paylater = new Kn(t.pay, t.onChange)),
-                          new Cn(r._paylater)
+                          (r._paylater = new Jn(t.pay, t.onChange)),
+                          new Tn(r._paylater)
                         );
                       case "cardlessemi":
                         return (
-                          (r._cardlessEmi = new er(t.pay, t.onChange)),
-                          new Cn(r._cardlessEmi)
+                          (r._cardlessEmi = new tr(t.pay, t.onChange)),
+                          new Tn(r._cardlessEmi)
                         );
                       default:
-                        _classPrivateFieldGet(r, tr).onError(
+                        _classPrivateFieldGet(r, nr).onError(
                           "Element initialization failed for: ".concat(
                             JSON.stringify(t)
                           )
                         );
                     }
                   } catch (t) {
-                    _classPrivateFieldGet(r, tr).onError({
+                    _classPrivateFieldGet(r, nr).onError({
                       message: t.message,
                       type: t.type ? t.type : ke,
                     });
@@ -12829,7 +12837,7 @@
                     ? t.forEach(function (t) {
                         return r.element(t);
                       })
-                    : _classPrivateFieldGet(r, tr).onError({
+                    : _classPrivateFieldGet(r, nr).onError({
                         message: "Expecting a list, got ".concat(_typeof(t)),
                         type: ke,
                       });
@@ -12858,7 +12866,7 @@
                                       " element not initialised. are you missing element method?"),
                                     a || (a = "jsxx-e-".concat(g, "-x")),
                                     (c.prev = 3),
-                                    !_classPrivateFieldGet(r, nr))
+                                    !_classPrivateFieldGet(r, rr))
                                   ) {
                                     c.next = 6;
                                     break;
@@ -12870,7 +12878,7 @@
                                     Ae
                                   );
                                 case 6:
-                                  _classPrivateFieldSet(r, nr, !0),
+                                  _classPrivateFieldSet(r, rr, !0),
                                     (c.t0 = t),
                                     (c.next =
                                       "card" === c.t0
@@ -13112,8 +13120,8 @@
                                       !h.closed &&
                                       h.close(),
                                     c.t1.type !== Ae &&
-                                      _classPrivateFieldSet(r, nr, !1),
-                                    _classPrivateFieldGet(r, tr).onError({
+                                      _classPrivateFieldSet(r, rr, !1),
+                                    _classPrivateFieldGet(r, nr).onError({
                                       message: c.t1.message,
                                       type: c.t1.type,
                                       paymentMode: c.t1.paymentMode,
@@ -13172,7 +13180,7 @@
                                 return (
                                   (a.prev = 0),
                                   (a.next = 3),
-                                  Wn.getSupportedPaymentModes(
+                                  zn.getSupportedPaymentModes(
                                     r.paymentSessionId
                                   )
                                 );
@@ -13182,7 +13190,7 @@
                                 return (
                                   (a.prev = 7),
                                   (a.t0 = a.catch(0)),
-                                  _classPrivateFieldGet(r, tr).onError({
+                                  _classPrivateFieldGet(r, nr).onError({
                                     message: a.t0.message,
                                     type: a.t0.type,
                                     paymentMode: a.t0.paymentMode,
@@ -13216,7 +13224,7 @@
                                   return (
                                     (o.prev = 0),
                                     (o.next = 3),
-                                    Wn.getSupportedPaymentOptions(
+                                    zn.getSupportedPaymentOptions(
                                       r.paymentSessionId,
                                       t
                                     )
@@ -13227,7 +13235,7 @@
                                   return (
                                     (o.prev = 7),
                                     (o.t0 = o.catch(0)),
-                                    _classPrivateFieldGet(r, tr).onError({
+                                    _classPrivateFieldGet(r, nr).onError({
                                       message: o.t0.message,
                                       type: o.t0.type,
                                       paymentMode: o.t0.paymentMode,
@@ -13264,7 +13272,7 @@
                                 return (
                                   (a.prev = 0),
                                   (a.next = 3),
-                                  Wn.getOrderDetails(r.paymentSessionId)
+                                  zn.getOrderDetails(r.paymentSessionId)
                                 );
                               case 3:
                                 return (t = a.sent), a.abrupt("return", t);
@@ -13300,7 +13308,7 @@
                                 return (
                                   (a.prev = 0),
                                   (a.next = 3),
-                                  Wn.getTheme(r.paymentSessionId)
+                                  zn.getTheme(r.paymentSessionId)
                                 );
                               case 3:
                                 return (t = a.sent), a.abrupt("return", t);
@@ -13332,7 +13340,7 @@
                         clearInterval(r._paymentWindowInterval)),
                       document.getElementById("cashfree-iframe-container") &&
                         dt(),
-                      yt(),
+                      bt(),
                       document.getElementById("cashfree-qrcode-container") &&
                         document
                           .getElementById("cashfree-qrcode-container")
@@ -13340,32 +13348,32 @@
                       t.transaction &&
                       t.transaction.txStatus &&
                       "success" === t.transaction.txStatus.toLowerCase()
-                        ? _classPrivateFieldGet(r, tr).onPaymentSuccess(t)
+                        ? _classPrivateFieldGet(r, nr).onPaymentSuccess(t)
                         : t.order &&
-                          _classPrivateFieldGet(r, tr).onPaymentFailure(t),
-                      _classPrivateFieldSet(r, nr, !1));
+                          _classPrivateFieldGet(r, nr).onPaymentFailure(t),
+                      _classPrivateFieldSet(r, rr, !1));
                   }
                 ),
                 _defineProperty(this, "_handlePaymentWindowClose", function () {
                   r._paymentWindowInterval = setInterval(function () {
                     r._paymentWindow &&
                       r._paymentWindow.closed &&
-                      (_classPrivateFieldSet(r, nr, !1),
-                      yt(),
+                      (_classPrivateFieldSet(r, rr, !1),
+                      bt(),
                       document.getElementById("cashfree-iframe-container") &&
                         dt(),
                       clearInterval(r._paymentWindowInterval),
-                      _classPrivateFieldGet(r, tr).onError({
+                      _classPrivateFieldGet(r, nr).onError({
                         message: "User closed the Payment Window.",
                         type: ke,
                       }));
                   }, 500);
                 }),
                 _defineProperty(this, "_abortPayment", function (t) {
-                  _classPrivateFieldSet(r, nr, !1),
-                    yt(),
+                  _classPrivateFieldSet(r, rr, !1),
+                    bt(),
                     t ||
-                      _classPrivateFieldGet(r, tr).onError({
+                      _classPrivateFieldGet(r, nr).onError({
                         message: "Payment aborted by the User.",
                         type: ke,
                       }),
@@ -13412,9 +13420,9 @@
                   })()
                 ),
                 _defineProperty(this, "_abortTimeout", function (t) {
-                  _classPrivateFieldSet(r, nr, !1),
-                    yt(),
-                    _classPrivateFieldGet(r, tr).onError({
+                  _classPrivateFieldSet(r, rr, !1),
+                    bt(),
+                    _classPrivateFieldGet(r, nr).onError({
                       message: t,
                       type: ke,
                     }),
@@ -13432,6 +13440,7 @@
                   dsn: "https://cedc1464859a4af7a1d368f8aa398fef@o330525.ingest.sentry.io/6487617",
                   integrations: [new BrowserTracing()],
                   environment: "Sandbox",
+                  allowUrls: ["cashfree.com"],
                 }),
                 "function" != typeof t.onPaymentSuccess)
               )
@@ -13442,10 +13451,10 @@
                 delete t.paymentSessionId,
                 _classPrivateFieldSet(
                   this,
-                  tr,
-                  Object.assign(_classPrivateFieldGet(this, tr), t)
+                  nr,
+                  Object.assign(_classPrivateFieldGet(this, nr), t)
                 ),
-                _classPrivateFieldSet(this, nr, !1),
+                _classPrivateFieldSet(this, rr, !1),
                 (function listenToIframe(t) {
                   window.addEventListener("message", function (r) {
                     [
@@ -13460,10 +13469,10 @@
                   });
                 })(this._handlePaymentStatusResponse);
             },
-            ar = function initializeApp(t) {
-              return new rr(t);
+            ir = function initializeApp(t) {
+              return new ar(t);
             },
-            ir = function Cashfree(t) {
+            or = function Cashfree(t) {
               var r = this;
               _classCallCheck(this, Cashfree),
                 _defineProperty(
@@ -13678,7 +13687,7 @@
                     c.submit();
                 }),
                 _defineProperty(this, "elements", function (t) {
-                  return (t.paymentSessionId = r.paymentSessionId), ar(t);
+                  return (t.paymentSessionId = r.paymentSessionId), ir(t);
                 }),
                 (this.paymentSessionId = t),
                 (this.randomId = Math.floor(1e5 * Math.random()));
